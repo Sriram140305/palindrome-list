@@ -62,3 +62,68 @@ int main() {
 
     return 0;
 }
+
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Node {
+    char data;
+    struct Node *next;
+};
+
+struct Node *head = NULL;
+
+// Global input and length
+char input[100];
+int n;
+
+void insert(char in) {
+    struct Node *newnode = (struct Node *)malloc(sizeof(struct Node));
+    newnode->data = in;
+    newnode->next = head;
+    head = newnode;
+}
+
+void display() {
+    struct Node *temp = head;
+    while (temp != NULL) {
+        printf("%c->", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+void checkpalindrome() {
+    struct Node *temp = head;
+    int isPalindrome = 0;
+    for (int i = 0; i < n; i++) {
+        if (input[i] == temp->data) {
+            isPalindrome++;
+            
+        }
+        temp = temp->next;
+    }
+
+    if (isPalindrome==n) {
+        printf("yes\n");
+    } else {
+        printf("no\n");
+    }
+}
+
+int main() {
+    scanf("%s", input);
+    n = strlen(input);
+    printf("%d\n", n);
+    for (int i = 0; i < n; i++) {
+        insert(input[i]);
+    }
+
+    display();
+    checkpalindrome();
+    return 0;
+}
